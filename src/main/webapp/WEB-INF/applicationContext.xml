@@ -1,0 +1,50 @@
+<beans:beans xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+    <context:component-scan base-package="org.java.spring">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    
+    <beans:bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<beans:property name="location" value="/WEB-INF/JDBC.properties"/>
+    </beans:bean> 
+    <beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <beans:property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <beans:property name="url" value="${jdbc.databaseUrl}"/>
+        <beans:property name="username" value="${jdbc.username}"/>
+        <beans:property name="password" value="${jdbc.password}"/>
+    </beans:bean> 
+    <beans:bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
+        <beans:property name="packagesToScan" value="org.java.spring.entity"/>
+        <beans:property name="dataSource" ref="dataSource"/>
+         <beans:property name="jpaProperties">
+           <beans:props>
+              <!-- <beans:prop key="hibernate.dialect">${jdbc.dialect}</beans:prop> -->
+              <beans:prop key="hibernate.show_sql">true</beans:prop>
+              <beans:prop key="hibernate.hbm2ddl.auto">create</beans:prop>
+           </beans:props>
+        </beans:property>
+        <beans:property name="persistenceProvider">
+           <beans:bean  class="org.hibernate.jpa.HibernatePersistenceProvider"/>
+        </beans:property>
+    </beans:bean>
+    
+    <tx:annotation-driven />
+	<beans:bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean>
+	
+	<jpa:repositories base-package="org.java.spring.repository"/>
+    </beans:beans>

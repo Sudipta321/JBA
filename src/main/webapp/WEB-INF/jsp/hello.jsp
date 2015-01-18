@@ -1,14 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../layouts/taglib.jsp" %> 
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
 </head>
 <body>
-<h1>Hi ${message} Hello from Spring MVC</h1>
+<%-- <h1>Hi ${message} Hello from Spring MVC</h1> --%>
+<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTM6Z8PJwDUDrUQINddsFzXrKiJTV8i57e-WYdSIPHiV-_Z4CEGxA" style="width:1135px;height:460px">
 </body>
 </html>

@@ -7,6 +7,8 @@
   <!-- Shared version number properties -->
 	<properties>
 	    <org.springframework.version>4.1.4.RELEASE</org.springframework.version>
+	    <apache.tiles>3.0.3</apache.tiles>
+	    <spring.security.version>3.2.5.RELEASE</spring.security.version>
 	</properties>
  <dependencies>
 		<!--
@@ -18,7 +20,6 @@
 	  <artifactId>spring-core</artifactId>
 	  <version>${org.springframework.version}</version>
 	</dependency>
-	
 	<!--
 	    Expression Language (depends on spring-core)
 	    Define this if you use Spring Expression APIs (org.springframework.expression.*)
@@ -153,7 +154,7 @@
 	  <version>${org.springframework.version}</version>
 	  <scope>test</scope>
 	</dependency>
-	<!-- other -->
+	<!-- Javax servlet JSTL Taglib -->
 	<dependency>
 		<groupId>taglibs</groupId>
 		<artifactId>standard</artifactId>
@@ -165,7 +166,75 @@
 		<artifactId>jstl</artifactId>
 		<version>1.1.2</version>
 	</dependency>
-</dependencies>
+	
+	<!-- Apache Tiles -->
+	<dependency>
+		<groupId>org.apache.tiles</groupId>
+		<artifactId>tiles-core</artifactId>
+		<version>${apache.tiles}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.tiles</groupId>
+		<artifactId>tiles-jsp</artifactId>
+		<version>${apache.tiles}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-log4j12</artifactId>
+		<version>1.5.8</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-dbcp</groupId>
+		<artifactId>commons-dbcp</artifactId>
+		<version>1.4</version>
+	</dependency>
+	
+	<!-- Persistence dependencies -->
+	<dependency>
+		<groupId>org.springframework.data</groupId>
+		<artifactId>spring-data-jpa</artifactId>
+		<version>1.7.1.RELEASE</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-entitymanager</artifactId>
+		<version>4.3.8.Final</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-validator</artifactId>
+		<version>5.1.3.Final</version>
+	</dependency>
+	<!-- MySql java connector -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.34</version>
+	</dependency>
+ <!-- Spring Security -->
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-web</artifactId>
+		<version>${spring.security.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-core</artifactId>
+		<version>${spring.security.version}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-config</artifactId>
+		<version>${spring.security.version}</version>
+	</dependency>
+		<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-taglibs</artifactId>
+	    <version>${spring.security.version}</version>
+	</dependency>
+	
+ </dependencies>
   <build>
     <testSourceDirectory>src/main/test</testSourceDirectory>
     <resources>
